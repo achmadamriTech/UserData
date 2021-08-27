@@ -31,5 +31,43 @@ public class RoleService {
         return role.get();
     }
 
+    // Insert data
+    public void createRole(Role role) {
+        Optional<Role> roleOptional = roleRepository.findById(role.getID());
+
+        if (roleOptional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Role Sudah Ada");
+        }
+        else {
+            roleRepository.save(role);
+            throw new ResponseStatusException(HttpStatus.OK, "User berhasil Diinput");
+        }
+        
+    }
+
+    // Delete Data
+    public void deleteRole(Long roleId){
+        Optional<Role> roleOptional = roleRepository.findById(roleId);
+
+        if (roleOptional.isPresent()) {
+            roleRepository.deleteById(roleId);
+            throw new ResponseStatusException(HttpStatus.OK,"Data Berhasil Di hapus!");
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT," Data Tidak Ditemukan!");
+        }
+    }
+
+    // Update Data
+    public void editRole(Long roleId, Role role){
+        Optional<Role> roleOptional = roleRepository.findById(roleId);
+        
+        if (roleOptional.isPresent()) {
+            roleRepository.save(role);
+            throw new ResponseStatusException(HttpStatus.OK,"Data berhasil Diubah");
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Data Tidak Ditemukan!");
+        }
+    }
+
 
 }

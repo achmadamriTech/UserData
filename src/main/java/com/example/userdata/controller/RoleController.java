@@ -7,8 +7,12 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -34,4 +38,21 @@ public class RoleController {
         return roleService.getRoleById(roleId);
     }
     
+    // Insert Data
+    @PostMapping("")
+    public void createRole(@RequestBody final Role role) {
+        roleService.createRole(role);
+    }
+
+    // Delete Data
+    @DeleteMapping("/{roleId}")
+    public void deleteRole(@PathVariable final Long roleId){
+        roleService.deleteRole(roleId);
+    }
+
+    // Update Data
+    @PutMapping("/{roleId}")
+    public void editRole(@PathVariable final long roleId, @RequestBody final Role role){
+        roleService.editRole(roleId, role);
+    }
 }

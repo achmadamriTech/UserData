@@ -17,7 +17,7 @@ public class Role {
     @Column(nullable = false)
     private String ROLE;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String KETERANGAN;
     
 
