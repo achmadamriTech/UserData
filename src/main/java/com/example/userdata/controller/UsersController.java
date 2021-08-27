@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -47,5 +48,11 @@ public class UsersController {
     @DeleteMapping("/{usersId}")
     public void deleteUsers(@PathVariable final Long usersId){
         usersService.deleteUsers(usersId);
+    }
+
+    // Update Data
+    @PutMapping("/{usersId}")
+    public void editUsers(@PathVariable final long usersId, @RequestBody final Users users){
+        usersService.editUsers(usersId, users);
     }
 }

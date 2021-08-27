@@ -56,4 +56,16 @@ public class UsersService {
             throw new ResponseStatusException(HttpStatus.CONFLICT," Data Tidak Ditemukan!");
         }
     }
+
+    // Update Data
+    public void editUsers(Long usersId, Users users){
+        Optional<Users> userOptional = usersRepository.findByID(usersId);
+        
+        if (userOptional.isPresent()) {
+            usersRepository.save(users);
+            throw new ResponseStatusException(HttpStatus.OK,"Data berhasil Diubah");
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Data Tidak Ditemukan!");
+        }
+    }
 }
