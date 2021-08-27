@@ -30,4 +30,18 @@ public class UsersService {
         }
         return users.get();
     }
+
+    // Insert data
+    public void createUsers(Users users) {
+        Optional<Users> userOptional = usersRepository.findByID(users.getID());
+
+        if (userOptional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User Sudah Ada");
+        }
+        else {
+            usersRepository.save(users);
+            throw new ResponseStatusException(HttpStatus.OK, "User berhasil Diinput");
+        }
+        
+    }
 }
