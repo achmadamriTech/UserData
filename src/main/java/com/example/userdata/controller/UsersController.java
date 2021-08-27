@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.userdata.entity.Users;
 import com.example.userdata.service.UsersService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +42,10 @@ public class UsersController {
     public void createUsers(@RequestBody final Users users) {
         usersService.createUsers(users);
     }
-    
+
+    // Delete Data
+    @DeleteMapping("/{usersId}")
+    public void deleteUsers(@PathVariable final Long usersId){
+        usersService.deleteUsers(usersId);
+    }
 }

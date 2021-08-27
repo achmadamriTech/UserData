@@ -44,4 +44,16 @@ public class UsersService {
         }
         
     }
+
+    // Delete Data
+    public void deleteUsers(Long usersId){
+        Optional<Users> usersOptional = usersRepository.findByID(usersId);
+
+        if (usersOptional.isPresent()) {
+            usersRepository.deleteById(usersId);
+            throw new ResponseStatusException(HttpStatus.OK,"Data Berhasil Di hapus!");
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT," Data Tidak Ditemukan!");
+        }
+    }
 }
