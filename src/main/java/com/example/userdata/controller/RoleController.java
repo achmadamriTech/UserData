@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -21,9 +22,16 @@ public class RoleController {
         this.roleService = roleService;
     }
 
+    // Get Semua Data
     @GetMapping("")
     public List<Role> getAllRole() {
         return roleService.getAllRole();
+    }
+
+    // Get DataById
+    @GetMapping("/{roleId}")
+    public Role getRoleById(@PathVariable(name = "roleId") Long roleId ){
+        return roleService.getRoleById(roleId);
     }
     
 }
