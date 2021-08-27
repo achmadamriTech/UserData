@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/users")
@@ -27,8 +30,16 @@ public class UsersController {
         return usersService.getAllUsers();
     }
 
+    // Get Data Berdasarkan ID
     @GetMapping("/{usersId}")
     public Users getUsersById(@PathVariable(name = "usersId") Long usersId ){
         return usersService.getUsersById(usersId);
     }
+
+    // Insert Data
+    @PostMapping("")
+    public void createUsers(@RequestBody final Users users) {
+        usersService.createUsers(users);
+    }
+    
 }
